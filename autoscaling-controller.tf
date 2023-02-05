@@ -2,7 +2,7 @@
 resource "aws_appautoscaling_target" "jenkins-target" {
   service_namespace  = "ecs"
   resource_id        = "service/${aws_ecs_cluster.JenkinsCluster.name}/${aws_ecs_service.jenkins-service.name}"
-  role_arn           = aws_iam_role.Jenkins_ECSTaskExecutionRole.arn
+  role_arn           = aws_iam_role.controller_ecs_execution_role.arn
   scalable_dimension = "ecs:service:DesiredCount"
   min_capacity       = var.JENKINS_COUNT_MIN
   max_capacity       = var.JENKINS_COUNT_MAX

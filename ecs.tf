@@ -57,17 +57,17 @@ resource "aws_ecs_service" "jenkins-service" {
   }
   depends_on = [
 	aws_lb_listener.jenkins-lb-listener, 
-	aws_iam_role_policy_attachment.ecs_task_execution_role,
-  	aws_lb_listener.agents_http_listener,
-        aws_lb_listener.agents_jnlp_listener
+	#aws_iam_role_policy_attachment.ecs_task_execution_role,
+  aws_lb_listener.agents_http_listener,
+  aws_lb_listener.agents_jnlp_listener
   ]
 }
 
 #App Task-Definition
 resource "aws_ecs_task_definition" "jenkins-td" {
   family                   = "jenkins-controller"
-  execution_role_arn       = aws_iam_role.Jenkins_ECSTaskExecutionRole.arn
-  task_role_arn            = aws_iam_role.Jenkins_ECSTaskExecutionRole.arn
+  execution_role_arn       = aws_iam_role.controller_ecs_execution_role.arn
+  task_role_arn            = aws_iam_role.controller_ecs_task_role.arn
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = var.JENKINS_FARGATE_CPU
