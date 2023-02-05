@@ -12,7 +12,7 @@ locals {
     example_agent_docker_image       = var.agent_docker_image
     jnlp_port                        = var.controller_jnlp_port
     jenkins_controller_num_executors = var.controller_num_executors
-    #jenkins_public_url               = local.jenkins_public_url
+    jenkins_public_url               = local.jenkins_public_url
     jenkins_nlb_url                  = "http://${aws_lb.nlb_agents.dns_name}"
     fargate_platform_version         = var.fargate_platform_version
     admin_password                   = random_password.admin_password.result

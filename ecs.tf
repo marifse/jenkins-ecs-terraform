@@ -4,7 +4,7 @@ locals {
   # Jenkins home inside the container. This is hard coded in the official docker image
   efs_volume_name    = "jenkins-data"
   #jenkins_host       = "${var.route53_subdomain}.${var.route53_zone_name}"
-  #jenkins_public_url = var.route53_zone_name != "" ? "https://${local.jenkins_host}" : "http://${aws_alb.alb_jenkins_controller.dns_name}"
+  jenkins_public_url  = aws_lb.jenkins-load-balancer.dns_name
 }
 
 #Cluster creation
