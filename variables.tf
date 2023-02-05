@@ -91,8 +91,8 @@ variable "controller_num_executors" {}
 
 #EFS variables
 #variable EFS_CIDR_IN {
-  default = "0.0.0.0/0"
-}
+#  default = "0.0.0.0/0"
+#}
 
 #Load Balancer & Autoscaling
 variable "LB_JENKINS_CIDR_IN" {
