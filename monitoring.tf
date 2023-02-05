@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "efs_burst_credit_balance" {
   ok_actions          = [aws_sns_topic.alarms_topic.arn]
 
   dimensions = {
-    FileSystemId = aws_efs_file_system.jenkins_conf.id
+    FileSystemId = aws_efs_file_system.jenkins-data.id
   }
 }
 
@@ -56,8 +56,8 @@ resource "aws_cloudwatch_metric_alarm" "alb_healthy_host_count" {
   ok_actions          = [aws_sns_topic.alarms_topic.arn]
 
   dimensions = {
-    TargetGroup  = aws_alb_target_group.jenkins_controller_tg.arn_suffix
-    LoadBalancer = aws_alb.alb_jenkins_controller.arn_suffix
+    TargetGroup  = aws_lb_target_group.jenkins-target_group.arn_suffix
+    LoadBalancer = aws_lb.jenkins-load-balancer.arn_suffix
   }
 }
 
@@ -76,8 +76,8 @@ resource "aws_cloudwatch_metric_alarm" "jenkins_high_cpu" {
   ok_actions          = [aws_sns_topic.alarms_topic.arn]
 
   dimensions = {
-    ClusterName = aws_ecs_cluster.cluster.name
-    ServiceName = aws_ecs_service.jenkins_controller.name
+    ClusterName = aws_ecs_cluster.JenkinsCluster.name
+    ServiceName = aws_ecs_service.jenkins_service.name
   }
 }
 
@@ -97,8 +97,8 @@ resource "aws_cloudwatch_metric_alarm" "jenkins_high_memory" {
   ok_actions          = [aws_sns_topic.alarms_topic.arn]
 
   dimensions = {
-    ClusterName = aws_ecs_cluster.cluster.name
-    ServiceName = aws_ecs_service.jenkins_controller.name
+    ClusterName = aws_ecs_cluster.JenkinsCluster.name
+    ServiceName = aws_ecs_service.jenkins-service.name
   }
 }
 

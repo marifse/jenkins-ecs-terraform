@@ -2,7 +2,7 @@
 resource "aws_security_group" "sg_jenkins_lb" {
   name        = "sg_jenkins_lb"
   description = "Allow 80 and 443 inbound traffic"
-  vpc_id      = data.terraform_remote_state.jenkins-vpc-tfstate.outputs.jenkins-vpc-id
+  vpc_id      = var.vpc_id
   egress {
     from_port   = 0
     to_port     = 0

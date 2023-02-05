@@ -54,7 +54,7 @@ variable "controller_docker_image" {
 variable "JENKINS_ENVIRONMENT" {
   default = "Dev"
 }
-variable "LOGS_RETENTIONDAYS_JENKINS" {
+variable "controller_log_retention_days" {
   default = "30"
 }
 variable "controller_listening_port" {
@@ -103,6 +103,11 @@ variable "controller_num_executors" {
   type        = number
   description = "Set this to a number > 0 to be able to build on controller (NOT RECOMMENDED)"
   default     = 0
+}
+variable "agents_log_retention_days" {
+  description = "Retention days for Agents log group"
+  type        = number
+  default     = 5
 }
 
 #EFS variables

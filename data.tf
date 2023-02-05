@@ -56,7 +56,7 @@ data "aws_iam_policy_document" "controller_ecs_task" {
       "ecs:StopTask",
       "ecs:ListContainerInstances",
     ]
-    resources = [aws_ecs_cluster.cluster.arn]
+    resources = [aws_ecs_cluster.JenkinsCluster.arn]
   }
 
   statement {
