@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "controller_ecs_task" {
     actions = [
       "ecs:RunTask",
     ]
-    resources = ["arn:aws:ecs:${var.aws_region}:${data.aws_caller_identity.caller.account_id}:task-definition/*"]
+    resources = ["arn:aws:ecs:${var.AWS_REGION}:${data.aws_caller_identity.caller.account_id}:task-definition/*"]
   }
 
   statement {
@@ -75,7 +75,7 @@ data "aws_iam_policy_document" "controller_ecs_task" {
       "ecs:StopTask",
       "ecs:DescribeTasks",
     ]
-    resources = ["arn:aws:ecs:${var.aws_region}:${data.aws_caller_identity.caller.account_id}:task/*"]
+    resources = ["arn:aws:ecs:${var.AWS_REGION}:${data.aws_caller_identity.caller.account_id}:task/*"]
   }
 }
 

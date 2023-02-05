@@ -27,7 +27,7 @@ resource "aws_security_group" "sg_jenkins_lb" {
 resource "aws_security_group" "sg_jenkins_fargate" {
   name        = "sg_jenkins_fargate"
   description = "Allow 8080 inbound traffic"
-  vpc_id      = data.terraform_remote_state.jenkins-vpc-tfstate.outputs.jenkins-vpc-id
+  vpc_id      = var.vpc_id
   egress {
     from_port   = 0
     to_port     = 0
@@ -84,7 +84,7 @@ resource "aws_security_group_rule" "jenkins_agent_egress" {
 resource "aws_security_group" "ecs_efs_access" {
   name        = "ecs_efs_access"
   description = "Allow access to the Persistent EFS"
-  vpc_id      = data.terraform_remote_state.jenkins-vpc-tfstate.outputs.jenkins-vpc-id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 2049

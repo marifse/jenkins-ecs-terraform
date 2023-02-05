@@ -37,7 +37,7 @@ resource "aws_cloudwatch_metric_alarm" "alb_too_many_5xx_errors" {
   ok_actions          = [aws_sns_topic.alarms_topic.arn]
 
   dimensions = {
-    LoadBalancer = aws_alb.alb_jenkins_controller.arn_suffix
+    LoadBalancer = aws_lb.jenkins-load-balancer.arn_suffix
   }
 }
 
@@ -77,7 +77,7 @@ resource "aws_cloudwatch_metric_alarm" "jenkins_high_cpu" {
 
   dimensions = {
     ClusterName = aws_ecs_cluster.JenkinsCluster.name
-    ServiceName = aws_ecs_service.jenkins_service.name
+    ServiceName = aws_ecs_service.jenkins-service.name
   }
 }
 

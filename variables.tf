@@ -114,6 +114,11 @@ variable "agents_log_retention_days" {
 #variable EFS_CIDR_IN {
 #  default = "0.0.0.0/0"
 #}
+variable "efs_burst_credit_balance_threshold" {
+  type        = number
+  description = "Threshold below which the metric BurstCreditBalance associated alarm will be triggered. Expressed in bytes"
+  default     = 1154487209164 # half of the default credits
+}
 
 #Load Balancer & Autoscaling
 variable "LB_JENKINS_CIDR_IN" {
