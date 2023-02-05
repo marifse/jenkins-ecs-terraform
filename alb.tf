@@ -9,7 +9,7 @@ resource "aws_lb_target_group" "jenkins-target_group" {
   name        = var.JENKINS_TARGET_GROUP_NAME
   port        = "8080"
   protocol    = "HTTP"
-  vpc_id      = data.terraform_remote_state.jenkins-vpc-tfstate.outputs.jenkins-vpc-id
+  vpc_id      =  var.vpc_id
   target_type = "ip"
 
   health_check {
