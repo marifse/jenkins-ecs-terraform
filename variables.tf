@@ -85,9 +85,25 @@ variable "controller_deployment_percentages" {
 }
 
 #agent variables
-variable "agents_cpu_memory" {}
-variable "agent_docker_image" {}
-variable "controller_num_executors" {}
+variable "agents_cpu_memory" {
+  description = "CPU and memory for the agent example. Note that all combinations are not supported with Fargate."
+  type = object({
+    memory = number
+    cpu    = number
+  })
+  default = {
+    memory = 2048
+    cpu    = 1024
+  }
+}
+variable "agent_docker_image" {
+  default = "elmhaidara/jenkins-alpine-agent-aws:latest-alpine"  
+}
+variable "controller_num_executors" {
+  type        = number
+  description = "Set this to a number > 0 to be able to build on controller (NOT RECOMMENDED)"
+  default     = 0
+}
 
 #EFS variables
 #variable EFS_CIDR_IN {
